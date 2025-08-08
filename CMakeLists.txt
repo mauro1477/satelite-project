@@ -3,7 +3,7 @@ project(MyUWSApp)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-set(CMAKE_OSX_DEPLOYMENT_TARGET "15.0")
+set(CMAKE_OSX_DEPLOYMENT_TARGET "15.0") # Target newer macOS 
 
 # Find packages
 find_package(OpenSSL REQUIRED)
