@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WebSocket Test</title>
+</head>
+<body>
+  <h1>WebSocket Test</h1>
+  <script>
+    const ws = new WebSocket("ws://localhost:9001");
+
+    ws.onopen = () => {
+      console.log("✅ Connected to server");
+    };
+
+    ws.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      console.log("📡 Telemetry:", data);
+    };
+
+    ws.onerror = (err) => {
+      console.error("❌ WebSocket error:", err);
+    };
+  </script>
+</body>
+</html>

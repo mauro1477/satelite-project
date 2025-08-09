@@ -5,6 +5,12 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 set(CMAKE_OSX_DEPLOYMENT_TARGET "15.0") # Target newer macOS 
 
+
+set(OPENSSL_ROOT_DIR "/usr/local/opt/openssl@3") # or /opt/homebrew/opt/openssl@3
+set(OPENSSL_INCLUDE_DIR "${OPENSSL_ROOT_DIR}/include")
+set(OPENSSL_CRYPTO_LIBRARY "${OPENSSL_ROOT_DIR}/lib/libcrypto.dylib")
+set(OPENSSL_SSL_LIBRARY "${OPENSSL_ROOT_DIR}/lib/libssl.dylib")
+
 # Find packages
 find_package(OpenSSL REQUIRED)
 find_package(ZLIB REQUIRED)
@@ -40,6 +46,7 @@ target_include_directories(uSockets PUBLIC
 
 target_include_directories(MyUWSApp PRIVATE
   ${CMAKE_SOURCE_DIR}/external/uWebSockets/src
+  external/json
   ${OPENSSL_INCLUDE_DIR}
   ${ZLIB_INCLUDE_DIRS}
 )
