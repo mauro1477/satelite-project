@@ -5,7 +5,6 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 set(CMAKE_OSX_DEPLOYMENT_TARGET "15.0") # Target newer macOS 
 
-
 set(OPENSSL_ROOT_DIR "/usr/local/opt/openssl@3") # or /opt/homebrew/opt/openssl@3
 set(OPENSSL_INCLUDE_DIR "${OPENSSL_ROOT_DIR}/include")
 set(OPENSSL_CRYPTO_LIBRARY "${OPENSSL_ROOT_DIR}/lib/libcrypto.dylib")
@@ -56,18 +55,11 @@ target_include_directories(MyUWSApp PRIVATE
 
 # 5) Link AFTER the target exists
 # Prefer imported targets if available; fall back to raw libs on Amazon Linux
-if (TARGET OpenSSL::SSL)
-  target_link_libraries(MyUWSApp PRIVATE
-    uSockets
-    ${LIBUV_LIBRARIES}
-    OpenSSL::SSL 
-    OpenSSL::Crypto
-    Threads::Threads
-    ZLIB::ZLIB
-  )
-else()
+if (NOT TARGET OpenSSL::SSL)
   find_library(OPENSSL_SSL_LIBRARY NAMES ssl REQUIRED PATHS /usr/lib64 /usr/lib)
   find_library(OPENSSL_CRYPTO_LIBRARY NAMES crypto REQUIRED PATHS /usr/lib64 /usr/lib)
+endif()
+
   target_link_libraries(MyUWSApp PRIVATE
     uSockets
     ${LIBUV_LIBRARIES}
@@ -76,4 +68,3 @@ else()
     Threads::Threads
     ZLIB::ZLIB
   )
-endif()
