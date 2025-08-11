@@ -33,9 +33,9 @@ export default function App() {
 
   return (
     <div style={{ padding: 24, display: "grid", gap: 24 }}>
-      <h1>🛰️ Satellite Telemetry</h1>
+      <h1 style={{textAlign: "center"}}>🛰️ Satellite Telemetry</h1>
 
-      <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+      <div style={{ display: "flex", gap: 12, flexWrap: "wrap", justifyContent: "center"}}>
         <Stat label="Altitude" value={latest?.altitude_km?.toFixed?.(2)} unit="km" />
         <Stat label="Velocity" value={latest?.velocity_kms?.toFixed?.(3)} unit="km/s" />
         <Stat label="Battery" value={latest?.battery_voltage?.toFixed?.(2)} unit="V" />
