@@ -42,7 +42,7 @@ export default function App() {
         <Stat label="Temperature" value={latest?.temperature_c?.toFixed?.(1)} unit="°C" />
       </div>
 
-      <div style={{ height: 280 }}>
+      <div style={{ height: 280, paddingRight: 25}}>
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={formatted}>
             <CartesianGrid strokeDasharray="3 3" />
@@ -54,7 +54,7 @@ export default function App() {
         </ResponsiveContainer>
       </div>
 
-      <div style={{ height: 280 }}>
+      <div style={{ height: 280, paddingRight: 25}}>
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={formatted}>
             <CartesianGrid strokeDasharray="3 3" />
